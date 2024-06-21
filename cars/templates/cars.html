@@ -1,0 +1,100 @@
+{% block content %}
+
+    <style>
+        .main{
+            display:flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .car_list{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            padding: 20px;
+            width: 70%;
+            gap: 20px;
+        }
+        .car_card{
+            background-color: #e3e1e1;
+            text-align: center;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            max-width: 400px;
+            max-height: 200px;
+        }
+        .car_card:hover{
+            cursor: pointer;
+            transform: translateY(-15px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+
+
+        }
+        .car_card h2{
+            font-size: 1rem;
+        }
+        .car_card p{
+            font-size: 0.8rem;
+        }
+        .car_card img{
+            height: 100px;
+        }
+        @media (max-width: 1000px) {
+            .car_list {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #e3e1e1;
+            border-radius: 4px;
+            margin-right: 10px;
+            transition: border-bottom-color 0.3s ease-in-out;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-bottom-color: #e3e1e1;
+        }
+
+        button[type="submit"] {
+            background-color: #0096c7;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #108eb8;
+        }
+    </style>
+    <form method="GET", action="{% url 'cars_list' %}">
+        <input type="text" name="search" placeholder="Buscar carro">
+        <button type="submit">Search</button>
+    </form>
+    <div class="main">
+        <div class="car_list">
+            {% if cars %}
+                {% for car in cars %}
+                    <div class="car_card"> 
+                        <img src="{{ car.photo.url }}" alt="foto do carro: {{ car.manufacturer}} {{car.model}}">
+                        <h2>{{ car.manufacturer}} {{car.model }}</h2>
+                        <p>{{car.value}} R$</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h2>Nenhum carro encontrado</h2>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
