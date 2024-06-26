@@ -1,0 +1,6 @@
+{% block content %}
+    <form method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+        {{car_form}}
+    </form> 
+{% endblock %}
