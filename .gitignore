@@ -1,0 +1,37 @@
+# Ambiente virtual
+venv/
+.venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Arquivos de banco de dados locais
+*.sqlite3
+db.sqlite3
+
+# Arquivos de configuração sensíveis
+*.env
+.env
+
+# Arquivos de cache e logs
+*.log
+*.pot
+*.pyc
+*.pyo
+__pycache__/
+*.swp
+
+# Diretórios de cache do Django
+/staticfiles/
+/media/
+
+# Diretórios de cache do IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de migração do Django
+*/migrations/*.py
+*/migrations/*.pyc
